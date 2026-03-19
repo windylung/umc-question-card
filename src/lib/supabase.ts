@@ -12,7 +12,14 @@ let supabaseClient: SupabaseClient | null = null;
 function createSupabaseClient() {
   if (supabaseClient) return supabaseClient;
 
-  supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("Supabase 환경 변수가 설정되지 않았습니다.");
+  }
+
+  const url: string = supabaseUrl;
+  const key: string = supabaseAnonKey;
+
+  supabaseClient = createClient(url, key, {
     auth: {
       persistSession: false,
     },

@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* 기본 색상 토큰 - 메탈릭 다크 테마 */
+  --color-app-background: #02030a;
+  --color-app-foreground: #f9fafb;
+
+  /* 포인트 컬러: 네온 사이언 */
+  --color-app-primary: #22d3ee;
+  --color-app-primary-foreground: #020617;
+
+  --color-metal-silver-soft: #d4d4d8;
+  --color-metal-silver-strong: #f4f4f5;
+
+  /* 폰트 변수 (layout.tsx에서 next/font로 주입) */
+  --font-sans: var(--font-app-sans);
+
+  /* 카드 및 패널용 그림자 / 그라데이션 */
+  --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.9);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #02030a;
+  background:
+    linear-gradient(145deg, #71717a 0%, #4b5563 40%, #111827 100%),
+    url("/element.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: transparent;
+  color: var(--color-app-foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.heading-metal-kor {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+::selection {
+  background-color: color-mix(
+    in srgb,
+    var(--color-app-primary) 60%,
+    transparent
+  );
+  color: var(--color-app-foreground);
 }
